@@ -10,23 +10,27 @@ import SwiftData
 
 @main
 struct Product_ListApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    @StateObject var productObject = ProductObservableObject()
+    
+    @StateObject var routeObject = RouterObserverableObject()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-        }
-        .modelContainer(sharedModelContainer)
+            NavigationStack(path: $routeObject.navPath) {
+                ContentView().navigationDestination(for: RouterObserverableObject.RouterDestination.self) {
+                    destination in
+                    switch destination {
+                    case .home:
+                        HomeView()
+                    case .cart:
+                        CartView()
+                    case .checkout:
+                        CheckoutView()
+                    case .successCheckout:
+                        SuccessPaymentView()
+                    }
+                }
+            }
+        }.environmentObject(productObject).environmentObject(routeObject)
     }
 }

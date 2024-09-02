@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "image-creme-brulee-tablet.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

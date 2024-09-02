@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "image-tiramisu-mobile.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
